@@ -1,35 +1,57 @@
 package pb;
+import java.util.Objects;
+
 import jakarta.persistence.*;
+
 
 @Entity
 public class Bank {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int bank_id;
-	private String Bank_Name;
-	private int Phone_Number;
-	public int getBank_id() {
-		return bank_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name, phonenumber;
+
+    @OneToOne(mappedBy = "bank")
+    private People people;
+
+	public int getId() {
+		return id;
 	}
-	public void setBank_id(int bank_id) {
-		this.bank_id = bank_id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getBank_Name() {
-		return Bank_Name;
+
+	public String getName() {
+		return name;
 	}
-	public void setBank_Name(String bank_Name) {
-		Bank_Name = bank_Name;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public int getPhone_Number() {
-		return Phone_Number;
+
+	public String getPhonenumber() {
+		return phonenumber;
 	}
-	public void setPhone_Number(int phone_Number) {
-		Phone_Number = phone_Number;
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
+	
+	@Override
+	   public boolean equals(Object o) {
+	       if (this == o) return true;
+	       if (o == null || getClass() != o.getClass()) return false;
+	       Bank bank = (Bank) o;
+	       return Objects.equals(id, bank.id);
+	   }
+
 	@Override
 	public String toString() {
-		return "Bank [bank_id=" + bank_id + ", Bank_Name=" + Bank_Name + ", Phone_Number=" + Phone_Number + "]";
+		return "Bank [id=" + id + ", name=" + name + ", phonenumber=" + phonenumber + "]";
 	}
-	
-	
+
+
+    
 }
+

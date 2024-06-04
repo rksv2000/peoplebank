@@ -1,48 +1,63 @@
 package pb;
 import jakarta.persistence.*;
 
+
 @Entity
 public class People {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int person_id;
-	private String First_Name,Last_Name,BirthDate;
-	@OneToOne(cascade=CascadeType.ALL)
-	private Bank bank;
-	public int getPerson_id() {
-		return person_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String firstname,lastname,birthdate;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "people_id", referencedColumnName = "id")
+    private Bank bank;
+
+	public int getId() {
+		return id;
 	}
-	public void setPerson_id(int person_id) {
-		this.person_id = person_id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getFirst_Name() {
-		return First_Name;
+
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFirst_Name(String first_Name) {
-		First_Name = first_Name;
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
-	public String getLast_Name() {
-		return Last_Name;
+
+	public String getLastname() {
+		return lastname;
 	}
-	public void setLast_Name(String last_Name) {
-		Last_Name = last_Name;
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
-	public String getBirthDate() {
-		return BirthDate;
+
+	public String getBirthdate() {
+		return birthdate;
 	}
-	public void setBirthDate(String birthDate) {
-		BirthDate = birthDate;
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
 	}
+
 	public Bank getBank() {
 		return bank;
 	}
+
 	public void setBank(Bank bank) {
 		this.bank = bank;
 	}
+
 	@Override
 	public String toString() {
-		return "People [person_id=" + person_id + ", First_Name=" + First_Name + ", Last_Name=" + Last_Name
-				+ ", BirthDate=" + BirthDate + ", bank=" + bank + "]";
+		return "People [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", birthdate=" + birthdate
+				+ ", bank=" + bank + "]";
 	}
-	
+
+    
 }
